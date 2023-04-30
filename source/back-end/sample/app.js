@@ -1,6 +1,4 @@
-const prompt = require('prompt-sync')();
-
-//sample schema test
+//Schemas
 const Flights = require("./Flights.schema");
 const Airlines = require("./Airlines.schema");
 const Airports = require("./Airports.schema");
@@ -11,17 +9,15 @@ const path = require("path");
 const mongoose = require('mongoose');
 const mongo = require("./mongodb");
 
-async function sample_schema() {
-    console.log("query")
-    console.log(await Sample.findOne({ AIRLINE: "US" }));
-
-    console.log("fin query")
-
-}
-
 //Returns a list with all the documents in the Airlines collection in the database
 async function associatedAirlines() {
-    return await Airlines.find({});
+    try {
+        const airlines = await Airlines.find({});
+        return airlines;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 //
@@ -31,22 +27,34 @@ function aboutWatsonAirlines() {
 
 //Returns a list with all the documents in the flights collection in the database that matches the Origin Airport, the Destination Airport and the Departure Date passed trough the parameters
 async function SearchForFlights(originAirport, destinationAirport, departureDate) {
-    const startDate = new Date(departureDate);
-    const endDate = new Date(new Date(departureDate).setDate(startDate.getDate() + 1));
-    return await Flights.find({
-        ORIGIN_AIRPORT: originAirport,
-        DESTINATION_AIRPORT: destinationAirport,
-        DEPARTURE_DATE: {
-            $gte: startDate,
-            $lt: endDate,
-        }
-    });
-}
+    const startDate = new Date(departureDate);                                              //Variable with the begining of the search range, its equal to departure date
+    const endDate = new Date(new Date(departureDate).setDate(startDate.getDate() + 1));     //Variable with the ending of the search range, its equal to departure date plus onde day
 
+    try {
+        const flights = await Flights.find({
+            ORIGIN_AIRPORT: originAirport,
+            DESTINATION_AIRPORT: destinationAirport,
+            DEPARTURE_DATE: {
+                $gte: startDate,
+                $lt: endDate,
+            }
+        });
+        return flights;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
 
 //returns information about the flight wich id matches flightID 
 async function requestFlightInformation(flightID) {
-    return await Flights.findById( flightID );
+    try {
+        const flightInfo = await Flights.findById(flightID);
+        return flightInfo;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 async function closeDBConecction() {
@@ -55,7 +63,6 @@ async function closeDBConecction() {
 }
 
 async function main() {
-
     // Get global variables from .env file
     require("dotenv").config({ path: path.resolve(__dirname, "./../../.env") });
 
@@ -63,36 +70,17 @@ async function main() {
     const { create_connection } = require("./mongodb");
     await create_connection();
 
-    const queriesPromise = new Promise((resolve, reject) => {
-        SearchForFlights("SFO", "DFW", "2023-01-01")
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    //Testing of the queries functions 
 
-        //Prints in console the list of associated airlines
-        console.log("List of Associated Airlines:")
-        associatedAirlines()
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    const flights = await SearchForFlights("SFO", "DFW", "2023-01-01");
+    console.log(flights);
 
-        requestFlightInformation('63e53b3d123da255099f26c2')
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    });
+    console.log("List of Associated Airlines:");
+    const associatedAirlnes = await associatedAirlines();
+    console.log(associatedAirlnes);
 
-
-    //console.log(aboutWatsonAirlines());
+    const flightInformation = await requestFlightInformation('63e53b3d123da255099f26c2');
+    console.log(flightInformation);
 }
 
 main();
