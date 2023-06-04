@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "express": "^4.18.2"
+  },
+  "name": "primer-intento",
+  "description": "- [Watson Airlines Customer Experience](#watson-airlines-customer-experience)   - [1. Introduction](#1-introduction)     - [1.1. About Watson Airlines](#11-about-watson-airlines)     - [1.2. Business Challenge](#12-business-challenge)   - [2. About Solution](#2-about-solution)     - [2.1. Application Architecture](#21-application-architecture)     - [2.2. Repository Structure](#22-repository-structure)     - [2.3. Virtual Assistant conversation prompts](#23-virtual-assistant-conversation-prompts)     - [2.4. Implementation Considerations](#24-implementation-considerations)   - [3. Database specifications](#3-database-specifications)     - [3.1. Flights](#31-flights)     - [3.2. Airports](#32-airports)     - [3.3. Airlines](#33-airlines)   - [4. Environment Setup](#4-environment-setup)     - [4.0. Prerequisites](#40-prerequisites)     - [4.1. Environment variables](#41-environment-variables)     - [4.2. MongoDB Connection](#42-mongodb-connection)   - [5. Solution Deployment \\& Configuration](#5-solution-deployment--configuration)     - [5.1. Application Deployment on IBM Code Engine](#51-application-deployment-on-ibm-code-engine)     - [5.2. Watson Assistant Conversation Flow](#52-watson-assistant-conversation-flow)     - [5.3. Custom Extensions on Watson Assistant](#53-custom-extensions-on-watson-assistant)     - [5.4. OpenAPI specification generation](#54-openapi-specification-generation)       - [5.4.1. What is OpenAPI?](#541-what-is-openapi)       - [5.4.2. Generating the specification](#542-generating-the-specification)   - [6. Project Delivery](#6-project-delivery)     - [6.1. Deliverables](#61-deliverables)     - [6.2. Focal Points](#62-focal-points)   - [References](#references)   - [Authors](#authors)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": []
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Watson Airlines</title>
+        <style>
+            :root {
+                --primary-color: #00008b;
+                --background-color: #ffffff;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: var(--background-color);
+                color: var(--primary-color);
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .content-container {
+                max-width: 800px;
+                margin: auto;
+                padding: 20px;
+                background-color: var(--background-color);
+                text-align: center; /* Center text */
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            header h1 {
+                text-transform: uppercase;
+                font-size: 2em;
+                letter-spacing: 2px;
+            }
+
+            main p {
+                margin-bottom: 40px;
+                line-height: 1.6;
+                font-size: 1.1em;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            .image-container {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 40px;
+                overflow: hidden;
+                border-radius: 15px;
+            }
+
+            .image-container img {
+                width: 100%;
+                height: auto;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); /* Shadow */
+            }
+
+            /* Add some responsive design */
+            @media screen and (max-width: 600px) {
+                .content-container {
+                    padding: 10px;
+                }
+                header h1 {
+                    font-size: 1.5em;
+                }
+                main p {
+                    font-size: 1em;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="content-container">
+            <header>
+                <h1>Watson Airlines</h1>
+            </header>
+            <main>
+                <section class="information-section">
+                    <figure class="image-container">
+                        <img src="imagenes/imagen2.jpg" alt="Watson Airlines fleet">
+                    </figure>
+                    <p>
+                        Watson Airlines is one of the largest airlines in America. With over 30 years of history, we connect people to opportunities while expanding the understanding of our planet and the people within it. We offer our one-of-a-kind value and Hospitality at over 50 airports across more than 15 countries.
+                    </p>
+                </section>
+                <section class="information-section">
+                    <figure class="image-container">
+                        <img src="imagenes/imagen1.jpg" alt="Watson Airlines in action">
+                    </figure>
+                    <p>
+                        In addition, we are members of the International Air Transport Association (IATA), a trade association that represents over 300 airlines, equivalent to about 83% of total air traffic. This allows us to operate safely, securely, efficiently, and economically under clearly defined rules.
+                    </p>
+                </section>
+                <section class="information-section">
+                    <figure class="image-container">
+                        <img src="imagenes/imagen3.jpg" alt="Watson Airlines technology">
+                    </figure>
+                    <p>
+                        We are pioneers in the usage of technology, and actively advocate for its usage to improve our customer's experience.
+                    </p>
+                </section>
+            </main>
+        </div>
+
+        <script>
+            window.watsonAssistantChatOptions = {
+                integrationID: "c8e4771d-2d5f-420a-962f-76a9b22df3bc", // The ID of this integration.
+                region: "us-east", // The region your integration is hosted in.
+                serviceInstanceID: "3405a6bd-c39b-466a-9ef3-cabc7c4cd680", // The ID of your service instance.
+                onLoad: function(instance) { instance.render(); }
+            };
+            setTimeout(function(){
+                const t=document.createElement('script');
+                t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+                document.head.appendChild(t);
+            });
+        </script>
+    </body>
+</html>
