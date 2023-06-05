@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de vuelos desde el aeropuerto OGG</h1>
+    <table id="flights-table">
+        <thead>
+            <tr>
+                <th>Aerolínea</th>
+                <th>Número de vuelo</th>
+                <th>Aeropuerto de destino</th>
+                <th>Cancelado</th>
+                <th>Fecha de salida</th>
+                <th>Fecha de llegada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los datos de los vuelos se llenarán aquí con JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Obtén la tabla del DOM
+        const table = document.getElementById('flights-table');
+
+        // Llama a la API de vuelos
+        fetch('http://localhost:3000/flights')
+            .then(response => response.json())
+            .then(data => {
+                // Por cada vuelo, crea una nueva fila en la tabla
+                data.result.forEach(flight => {
+                    const row = document.createElement('tr');
+
+                    // Añade las celdas de datos a la fila
+                    row.innerHTML = `
+                        <td>${flight.AIRLINE}</td>
+                        <td>${flight.FLIGHT_NUMBER}</td>
+                        <td>${flight.DESTINATION_AIRPORT}</td>
+                        <td>${flight.CANCELLED}</td>
+                        <td>${new Date(flight.DEPARTURE_DATE).toLocaleString()}</td>
+                        <td>${new Date(flight.ARRIVAL_DATE).toLocaleString()}</td>
+                    `;
+
+                    // Añade la fila a la tabla
+                    table.querySelector('tbody').appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>

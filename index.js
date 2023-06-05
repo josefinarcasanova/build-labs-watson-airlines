@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const { getFlights } = require('./back-end/controller.js');
+const { createConnection } = require('./back-end/database.js');
 
 const app = express();
 const port = 3000;
@@ -19,4 +20,4 @@ app.get('/flights', getFlights);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
+const con = createConnection().then(() => (console.log("cualq")))
