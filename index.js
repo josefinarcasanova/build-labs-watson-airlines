@@ -14,10 +14,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve('/Users/guille/build-labs-watson-airlines/front-end', 'index.html'));
 });
 
-// Aquí estableces la ruta /flights para hacer un GET 
 app.get('/flights', getFlights); 
+
+// Nueva ruta para servir el archivo flights.html
+app.get('/flights_page', (req, res) => {
+    res.sendFile(path.resolve('/Users/guille/build-labs-watson-airlines/front-end', 'flights.html'));
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-const con = createConnection().then(() => (console.log("cualq")))
+createConnection().then(() => console.log("Database connected"));

@@ -37,14 +37,14 @@ const general_specs = {
         description:
             "This is a REST API for the Watson Airlines Customer Experience use case.",
         contact: {
-            name: "Josefina R. Casanova",
-            email: "josefinarcasanova@ibm.com",
+            name: "Guillermo Robatto",
+            email: "grobattouniv@gmail.com",
         },
         version: "1.0.0",
     },
     servers: [
         {
-            url : "https://localhost:8080",
+            url : "https://localhost:3000",
             description : "Local Server",
         },
         {
