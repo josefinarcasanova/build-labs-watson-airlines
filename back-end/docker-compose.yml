@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  buildlabsassassment:
+    image: buildlabsassassment
+    build:
+      context: source/back-end/sample
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000

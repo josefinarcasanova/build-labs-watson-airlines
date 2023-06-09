@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights</title>
+    <style>
+        :root {
+                --primary-color: #00008b;
+                --background-color: #ffffff;
+            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flight Information</h1>
+    <table id="flights-table">
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>Flight Number</th>
+                <th>Origin Airport</th>
+                <th>Destination Airport</th>
+                <th>Cancelled</th>
+                <th>Departure Date</th>
+                <th>Arrival Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas de la tabla se llenarán aquí con JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Hacer una solicitud GET a la API para obtener los datos de los vuelos
+        fetch('http://localhost:3000/flights')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('flights-table');
+                const tbody = table.tBodies[0];
+
+                // Para cada vuelo, crea una fila en la tabla y rellénala con los datos del vuelo
+                data.result.forEach(flight => {
+                    const row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td>${flight.AIRLINE}</td>
+                        <td>${flight.FLIGHT_NUMBER}</td>
+                        <td>${flight.ORIGIN_AIRPORT}</td>
+                        <td>${flight.DESTINATION_AIRPORT}</td>
+                        <td>${flight.CANCELLED}</td>
+                        <td>${new Date(flight.DEPARTURE_DATE).toLocaleString()}</td>
+                        <td>${new Date(flight.ARRIVAL_DATE).toLocaleString()}</td>
+                    `;
+
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
